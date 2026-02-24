@@ -12,6 +12,41 @@
     font-weight: 400;
 }
 
-.temp {
+.nav-link {
+    display: inline-block;
+    margin-left: 10px;
+    text-decoration: underline blue;
+    color:blue;
+    
+}
 
+.form-container{
+    margin-top: 50px;
+    margin-right: 20px;
+    font-size:20px;
+}
+
+.message-textbox {
+    width: 300px;  /* Sets the width */
+    height: 150px; /* Sets the height */
+}
+
+/*css, helps move placeholder to the left*/
+input::placeholder {
+    text-align: left;
+    line-height:1px;
+
+}
+
+.successMessage {
+    color:green;
+}
+
+.errorMessage {
+    color:red;
+}
+
+.sinb {
+    text-align: right;
+    margin-left:980px;
 }

@@ -32,4 +32,9 @@ body {
 
 img {
     text-align: center;
+    background:none;
+}
+
+h3 {
+    text-align:left;
 }

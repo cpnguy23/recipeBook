@@ -42,14 +42,11 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2026 - RecipeBook - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <a class="nav-link text-dark" color="blue" asp-area="" asp-controller="Home" asp-action="Contact">Contact Form</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <img src="~/images/pizelEgg.gif" alt="A floating egg" width="100" height="100"/>
-    <img src="~/images/cloud.jpg" alt="cloud example" />
-
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

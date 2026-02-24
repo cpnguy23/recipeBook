@@ -1,0 +1,46 @@
+﻿@model CustomerDatabase;
+
+<head>
+    <body> <!-- purpose is to get customer information and keep it in the database -->
+        <form method="post" asp-action="Contact" asp-controller="Home">
+            <h2>Please input your information below for contact back</h2>
+
+            <div class="form-container">
+                <label id="name">Name:</label>
+                <input type="text" asp-for="Name" placeholder="Full Name" />
+            </div>
+
+            <div class="form-container">
+                <label id="email">Email:</label>
+                <input type="text" asp-for="Email" placeholder="e.g. jdoe@gmail.com"/>
+            </div>
+
+            <div class="form-container">
+                <label id="message">Message</label>
+                <input class="message-textbox" type="text" asp-for="Message" placeholder="Enter a message here" />
+            </div>
+
+            <br/>
+
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+
+            <br />
+
+            <div>
+
+            @if (ViewBag.errorMessage != "")
+            {
+                <label class="errorMessage" color="red">@ViewBag.errorMessage</label>
+            }
+
+                @if (!string.IsNullOrEmpty(ViewBag.successMessage))
+            {
+                <label class="successMessage" color="green">@ViewBag.successMessage</label>
+                <img src="~/images/sinb.gif" class="sinb" width="300px" height="300px"  alt="sinb is judging u brother" />
+            }
+            </div>
+        </form>
+    </body>
+</head>

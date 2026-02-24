@@ -17,7 +17,29 @@ namespace RecipeBook.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [HttpGet]
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Contact(CustomerDatabase model)
+        {
+            if (model.Email.Contains("@") == false)
+            {
+                ViewBag.errorMessage = "Email invalid.";
+                return View("Contact", model);
+            }
+
+            
+            ViewBag.successMessage = model.Name + ", thank you, we will contact later bc i hate u";
+            ModelState.Clear();
+            return View(model);
+        }
+
+
+            [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
