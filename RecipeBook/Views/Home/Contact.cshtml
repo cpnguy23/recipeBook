@@ -37,7 +37,8 @@
 
                 @if (!string.IsNullOrEmpty(ViewBag.successMessage))
             {
-                <label class="successMessage" color="green">@ViewBag.successMessage</label>
+                var message = TempData["SuccessMessage"] as string;
+                <label class="successMessage" color="green">@message</label>
                 <img src="~/images/sinb.gif" class="sinb" width="300px" height="300px"  alt="sinb is judging u brother" />
             }
             </div>
