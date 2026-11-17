@@ -1,4 +1,22 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function submitForm(element) {
+    var form = document.getElementById("submitButton");
 
-// Write your JavaScript code.
+}
+
+function onTxtFocused(txt) {
+    txt.style.backgroundColor = "#ffd1dc";
+}
+
+function onTxtBlurred(txt) {
+    txt.style.backgroundColor = "white";
+}
+
+//testing if this function works
+
+function onKgsInput(txtBox) {
+    let lbl = document.getElementById("lblPounds");
+    let kgs = txtBox.value;
+    lblPounds.innerText = (kgs * 2.20462);
+    lblPounds.innerText += " lbs";
+}
+

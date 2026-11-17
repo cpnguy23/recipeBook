@@ -1,0 +1,29 @@
+@model RecipeBook.Models.MealTypeViewModel
+@{
+    ViewData["Title"] = "Add a Meal Type";
+}
+
+<div class="hero-strip text-center">
+    <p class="kicker">Add new</p>
+    <h1>New meal type</h1>
+    <p class="hero-sub">Create a new category shelf, like "Meal Prep" or "Holiday Baking".</p>
+</div>
+
+<div class="upload-wrap">
+    @if (!string.IsNullOrEmpty(Model.ResultMessage))
+    {
+        <div class="notice success">@Model.ResultMessage</div>
+    }
+
+    <form asp-action="NewMealType" method="post" class="upload-form">
+        <div asp-validation-summary="All" class="validationError"></div>
+
+        <label asp-for="Name">Meal type name</label>
+        <input asp-for="Name" placeholder="e.g. Meal Prep" />
+        <span asp-validation-for="Name" class="validationError"></span>
+
+        <button type="submit" class="btn-note">Add meal type</button>
+    </form>
+
+    <p class="hint text-center">New meal types last until the app restarts — once we store categories in the database, they'll be permanent.</p>
+</div>

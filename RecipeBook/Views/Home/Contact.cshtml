@@ -1,47 +1,37 @@
 ﻿@model CustomerDatabase;
 
 <head>
-    <body> <!-- purpose is to get customer information and keep it in the database -->
-        <form method="post" asp-action="Contact" asp-controller="Home">
+    <body style="margin-left:50px;"> <!-- purpose is to get customer information and keep it in the database -->
+        <form method="post" asp-action="Contact" id="ContactForm" asp-controller="Home">
             <h2>Please input your information below for contact back</h2>
 
             <div class="form-container">
                 <label id="name">Name:</label>
-                <input type="text" asp-for="Name" placeholder="Full Name" />
+                <input type="text" asp-for="Name" onfocus="onTxtFocused(this)" onblur="onTxtBlurred(this)" placeholder="Full Name" />
+                <span asp-validation-for="Name" class="validationError"></span>
             </div>
 
             <div class="form-container">
                 <label id="email">Email:</label>
-                <input type="text" asp-for="Email" placeholder="e.g. jdoe@gmail.com"/>
+                <input type="text" asp-for="Email" placeholder="e.g. jdoe@gmail.com" onfocus="onTxtFocused(this)" onblur="onTxtBlurred(this)" />
+                <span asp-validation-for="Email" class="validationError"></span>
+
             </div>
 
             <div class="form-container">
                 <label id="message">Message</label>
-                <input class="message-textbox" type="text" asp-for="Message" placeholder="Enter a message here" />
+                <input class="message-textbox" type="text" asp-for="Message" placeholder="Enter a message here" onfocus="onTxtFocused(this)" onblur="onTxtBlurred(this)" />
+                <span asp-validation-for="Message" class="validationError"></span>
             </div>
 
             <br/>
 
             <div>
-                <button type="submit">Submit</button>
-            </div>
-
-            <br />
-
-            <div>
-
-            @if (ViewBag.errorMessage != "")
-            {
-                <label class="errorMessage" color="red">@ViewBag.errorMessage</label>
-            }
-
-                @if (!string.IsNullOrEmpty(ViewBag.successMessage))
-            {
-                var message = TempData["SuccessMessage"] as string;
-                <label class="successMessage" color="green">@message</label>
-                <img src="~/images/sinb.gif" class="sinb" width="300px" height="300px"  alt="sinb is judging u brother" />
-            }
+                <button type="submit" class="submit-button" id="submitButton" onfocus="onTxtFocused(this)">Submit</button>
             </div>
         </form>
+
+        <!-- adding javascript in here -->
+        <script src="~/js/site.js"></script>
     </body>
 </head>

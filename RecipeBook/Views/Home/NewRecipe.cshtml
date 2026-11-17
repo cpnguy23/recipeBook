@@ -1,0 +1,44 @@
+@model RecipeBook.Models.RecipeUploadViewModel
+@{
+    ViewData["Title"] = "Add a Recipe";
+}
+
+<div class="hero-strip text-center">
+    <p class="kicker">Add new</p>
+    <h1>Share a recipe</h1>
+    <p class="hero-sub">Write out the instructions as you'd tell a friend, add a photo if you have one, and pick the
+        meal type it belongs to.</p>
+    </div>
+
+    <div class="upload-wrap">
+        @if (!string.IsNullOrEmpty(Model.ResultMessage))
+        {
+            <div class="notice success">@Model.ResultMessage</div>
+        }
+
+        <form asp-action="NewRecipe" method="post" enctype="multipart/form-data" class="upload-form">
+            <div asp-validation-summary="All" class="validationError"></div>
+
+            <label asp-for="Title">Recipe name</label>
+            <input asp-for="Title" placeholder="e.g. Grandma's Strawberry Cake" />
+            <span asp-validation-for="Title" class="validationError"></span>
+
+            <label asp-for="CategorySlug">Meal type</label>
+            <select asp-for="CategorySlug"
+                    asp-items='new SelectList(new[] {"breakfast","lunch","dinner","dessert","snack","drinks"})'>
+                <option value="">-- pick one --</option>
+            </select>
+            <span asp-validation-for="CategorySlug" class="validationError"></span>
+
+            <label asp-for="Instructions">Instructions</label>
+            <textarea asp-for="Instructions" rows="10" placeholder="Step 1...&#10;Step 2...&#10;Step 3..."></textarea>
+            <span asp-validation-for="Instructions" class="validationError"></span>
+
+            <label asp-for="Photo">Photo (optional)</label>
+            <input asp-for="Photo" type="file" accept="image/jpeg,image/png,image/webp" />
+            <p class="hint">JPG, PNG or WebP, up to 8 GB. Big photos are automatically resized to 1600px and compressed when
+                saved.</p>
+
+                <button type="submit" class="btn-note">Save recipe</button>
+            </form>
+        </div>

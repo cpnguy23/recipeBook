@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "All Recipes";
+    var categories = (Dictionary<string, (string Title, string Blurb, List<RecipeBook.Models.Recipe> Recipes)>)ViewBag.Categories;
+}
+
+<div class="hero-strip text-center">
+    <h1>The whole recipe box</h1>
+    <p class="hero-sub">Every recipe on the site, sorted by course. Pick a shelf.</p>
+</div>
+
+@foreach (var (slug, category) in categories)
+{
+    <section class="course-section">
+        <div class="course-head">
+            <h2>@category.Title</h2>
+            <p>@category.Blurb</p>
+        </div>
+        <div class="row g-3">
+            @foreach (var recipe in category.Recipes.Take(3))
+            {
+                <div class="col-md-4">
+                    <a class="recipe-tile tall" asp-action="Category" asp-route-id="@slug">
+                        <span class="tile-badge" data-cat="@slug">@recipe.Time</span>
+                        <span class="tile-title">@recipe.Title</span>
+                        <span class="tile-time">@recipe.Description</span>
+                    </a>
+                </div>
+            }
+        </div>
+        <a class="text-link mt-2 d-inline-block" asp-action="Category" asp-route-id="@slug">All @category.Title.ToLower() recipes →</a>
+    </section>
+}

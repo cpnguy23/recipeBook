@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = (string)ViewBag.CategoryTitle;
+    var recipes = (List<RecipeBook.Models.Recipe>)ViewBag.Recipes;
+}
+
+<div class="hero-strip text-center">
+    <p class="kicker">Recipe collection</p>
+    <h1>@ViewBag.CategoryTitle</h1>
+    <p class="hero-sub">@ViewBag.Blurb</p>
+</div>
+
+<div class="row g-4 justify-content-center">
+    @* Community-submitted recipes (from the database) *@
+    @foreach (var post in (List<RecipeBook.Models.RecipePost>)ViewBag.Posts)
+    {
+        <div class="col-md-6 col-lg-4">
+            <article class="recipe-post">
+                @if (!string.IsNullOrEmpty(post.PhotoFileName))
+                {
+                    <img class="recipe-photo" src="~/uploads/@post.PhotoFileName" alt="@post.Title" />
+                }
+                <span class="tile-badge" data-cat="@post.CategorySlug">@post.CreatedAt.ToString("MMM d, yyyy")</span>
+                <h3>@post.Title</h3>
+                <p class="instructions">@post.Instructions</p>
+            </article>
+        </div>
+    }
+
+    @foreach (var recipe in recipes)
+    {
+        <div class="col-md-6 col-lg-4">
+            <article class="recipe-post">
+                <span class="tile-badge" data-cat="@recipe.CategorySlug">@recipe.Time</span>
+                <h3>@recipe.Title</h3>
+                <p>@recipe.Description</p>
+                <a class="text-link" asp-action="Recipes">More @ViewBag.CategoryTitle.ToLower() recipes →</a>
+            </article>
+        </div>
+    }
+</div>
+
+<a class="btn-note mt-2" asp-action="Recipes">← Back to all recipes</a>

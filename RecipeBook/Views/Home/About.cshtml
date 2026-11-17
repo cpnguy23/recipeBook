@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "About Me";
+}
+
+<div class="hero-strip text-center">
+    <p class="kicker">Nice to meet you</p>
+    <h1>About Me</h1>
+    <p class="hero-sub">The girl behind all the butter, sugar and sprinkles.</p>
+</div>
+
+<div class="about-wrap">
+    <div class="about-card">
+        <div class="about-photo">
+            <img src="~/images/about-me.jpg" alt="Me at DreamCon holding a Pikachu plush" />
+        </div>
+
+        <div class="about-body">
+            <p class="kicker">Hello!</p>
+            <h2>Hi, I'm the baker behind RecipeBook 🌷</h2>
+
+            <!-- ✏️ REPLACE THIS PLACEHOLDER TEXT WITH YOUR OWN DESCRIPTION -->
+            <p>
+                Hi! I'm Chloe and I also go by Cookie on my dancing channel!
+                I am based on Houston, TX and I love to read smut and fantasy books in my free time!
+
+                I also play Dead by Daylight and Valorant!
+
+            </p>
+            <p>
+                You can add more paragraphs, a list of favourite flavours, or your kitchen rules —
+                whatever feels like you.
+            </p>
+            <!-- ✏️ END OF PLACEHOLDER -->
+
+            <ul class="about-facts">
+                <li><span>Favourite thing to bake</span> Cookies (i'm basic haha!</li>
+                <li><span>Always in my fridge</span> Rice lol</li>
+                <li><span>Current obsession</span> Reading smut and horror and trying to get into fantasy romance!</li>
+            </ul>
+
+            <a class="btn-note" asp-controller="Home" asp-action="Recipes">Browse my recipes</a>
+        </div>
+    </div>
+</div>

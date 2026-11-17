@@ -1,23 +1,81 @@
-﻿@{
+@{
     ViewData["Title"] = "Home Page";
+    var categories = (Dictionary<string, (string Title, int Count)>)ViewBag.Categories;
+    var popular = (List<RecipeBook.Models.Recipe>)ViewBag.Popular;
+    var latest = (List<RecipeBook.Models.Recipe>)ViewBag.Latest;
+    var featured = (RecipeBook.Models.Recipe)ViewBag.Featured;
 }
 
-<head>
-    <title>Recipe Book First Page</title>
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/style.css" />
-</head>
-<body>
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <h3>Recipe Book</h3> 
+<div class="hero-strip text-center">
+    <p class="hero-hi">Hi @ViewBag.WelcomeUser, welcome to RecipeBook!</p>
+    <h1>Simple, cozy recipes for every day</h1>
+    <p class="hero-sub">
+        Real food for busy people — weeknight dinners, lazy lunches and desserts
+        that are worth the sugar. Everything tested in a very small kitchen.
+    </p>
+</div>
 
-        <form>
-            <div>
-                <label>hi</label>
-            </div>
-        </form>
+<div class="category-strip">
+    @foreach (var (slug, info) in categories)
+    {
+        <a class="pill" asp-action="Category" asp-route-id="@slug">
+            @info.Title <span class="pill-count">(@info.Count)</span>
+        </a>
+    }
+</div>
+
+<hr class="soft-rule" />
+
+<div class="row feature-row">
+    <div class="col-lg-7">
+        <h2 class="section-title">The latest from the kitchen</h2>
+        <div class="row g-3 mt-0">
+            @foreach (var recipe in latest)
+            {
+                <div class="col-6 col-md-4">
+                    <a class="recipe-tile" asp-action="Category" asp-route-id="@recipe.CategorySlug">
+                        <span class="tile-badge" data-cat="@recipe.Category">@recipe.Category</span>
+                        <span class="tile-title">@recipe.Title</span>
+                        <span class="tile-time">@recipe.Time</span>
+                    </a>
+                </div>
+            }
+        </div>
+        <a class="text-link mt-3 d-inline-block" asp-action="Recipes">Browse all recipes →</a>
     </div>
-    <img src="~/images/pizelEgg.gif" alt="A floating egg" width="100" height="100" />
-    <img src="~/images/pinkCloud.png" alt="cloud" />
-</body>
+    <div class="col-lg-5 mt-4 mt-lg-0">
+        <div class="welcome-note">
+            <h2>Hi, welcome in!</h2>
+            <p>
+                RecipeBook started as a scribbled notebook of dinners that actually worked.
+                A few years later it's a whole recipe box. Every recipe here is simple on
+                purpose: short ingredient lists, plain-English steps, no fancy equipment.
+            </p>
+            <p>Remember — everything is better with sprinkles.</p>
+            <a class="btn-note" asp-action="Contact">Say hello</a>
+        </div>
+    </div>
+</div>
+
+<hr class="soft-rule" />
+
+<div class="row feature-row">
+    <div class="col-lg-5">
+        <p class="kicker">Reader favorite</p>
+        <h2 class="section-title mb-3">@featured.Title</h2>
+        <p>@featured.Description</p>
+        <a class="btn-note mt-2" asp-action="Category" asp-route-id="@featured.CategorySlug">Get the recipe</a>
+    </div>
+    <div class="col-lg-6 offset-lg-1 mt-4 mt-lg-0">
+        <h2 class="section-title">Most loved this month</h2>
+        <ul class="popular-list">
+            @foreach (var recipe in popular)
+            {
+                <li>
+                    <a asp-action="Category" asp-route-id="@recipe.CategorySlug">@recipe.Title</a>
+                    <span class="popular-meta">@recipe.Category · @recipe.Time</span>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
