@@ -535,6 +535,15 @@ input::placeholder {
   line-height: 1.7;
 }
 
+.about-links a {
+  display: inline-block;
+  margin-right: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.78rem;
+  font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif;
+}
+
 .about-facts {
   list-style: none;
   padding: 0;
